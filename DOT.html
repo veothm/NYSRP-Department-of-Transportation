@@ -2,154 +2,173 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NYSRP DOT | Fixed Portal</title>
+    <title>NYSRP DOT | Public Safety Portal</title>
     <style>
         :root {
-            /* HSL Palette */
-            --h: 200; 
-            --bg: hsl(var(--h), 25%, 7%);
-            --card: hsl(var(--h), 20%, 12%);
-            --accent: hsl(45, 100%, 50%);
-            --text: hsl(0, 0%, 90%);
+            /* Consumer Palette: Trustworthy Blue & Warning Orange */
+            --h: 210;
+            --bg: hsl(var(--h), 25%, 8%);
+            --card-bg: hsl(var(--h), 20%, 12%);
+            --accent: hsl(35, 100%, 50%); /* High-Vis Orange */
+            --text: hsl(0, 0%, 95%);
+            --text-dim: hsl(0, 0%, 75%);
         }
 
         body {
             margin: 0;
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
         }
 
         /* Hero Section */
-        .section-hero {
+        .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, transparent, var(--bg)),
-                        radial-gradient(circle at center, hsla(var(--h), 50%, 20%, 0.3), transparent);
+            text-align: center;
+            background: linear-gradient(hsla(var(--h), 25%, 8%, 0.7), hsla(var(--h), 25%, 8%, 0.9)),
+                        url('https://images.unsplash.com/photo-1510133769068-ad0124a99270?q=80&w=1200');
+            background-size: cover;
+            background-attachment: fixed; /* Parallax effect */
         }
 
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
             margin: 0;
-            color: var(--text);
             text-transform: uppercase;
+            letter-spacing: 5px;
         }
 
-        .hero-sub {
+        .hero p {
             color: var(--accent);
-            letter-spacing: 8px;
             font-weight: bold;
+            letter-spacing: 2px;
         }
 
-        /* Scroll Transition Class */
-        .scroll-reveal {
+        /* Scroll Transition Logic */
+        .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: all 0.8s ease-out;
-            margin-bottom: 50px;
         }
 
-        /* This class is toggled by the internal script below */
-        .is-visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .content-container {
+        .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 80px 20px;
         }
 
-        .info-grid {
+        /* Services Grid */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
         }
 
-        .block {
-            background: var(--card);
+        .service-card {
+            background: var(--card-bg);
             padding: 40px;
-            border-left: 4px solid var(--accent);
-            border-radius: 2px;
+            border-bottom: 4px solid var(--accent);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
         }
 
-        .block h2 {
-            margin-top: 0;
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 1.2rem;
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: hsl(var(--h), 20%, 15%);
         }
+
+        .service-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 2px;
+            margin-top: 20px;
+            transition: filter 0.3s;
+        }
+
+        .btn:hover { filter: brightness(1.2); }
 
         footer {
             text-align: center;
-            padding: 100px 20px;
-            border-top: 1px solid #222;
-            font-size: 0.8rem;
-            color: #555;
+            padding: 60px;
+            border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+            font-size: 0.9rem;
+            color: var(--text-dim);
         }
     </style>
 </head>
 <body>
 
-    <section class="section-hero">
-        <h1 class="hero-title">NYSRP</h1>
-        <div class="hero-sub">TRANSPORTATION</div>
-        <p style="margin-top: 40px; opacity: 0.5;">[ SCROLL FOR DEPARTMENT INFO ]</p>
+    <section class="hero">
+        <h1 class="reveal">NYSRP DOT</h1>
+        <p class="reveal">KEEPING LIBERTY COUNTY MOVING</p>
     </section>
 
-    <div class="content-container">
-        
-        <div class="scroll-reveal block">
-            <h2>Department Mission</h2>
-            <p>Our goal is to ensure the safety and fluidity of all Liberty County roadways. From Springfield to the Industrial Park, we maintain the infrastructure that keeps our citizens moving.</p>
+    <div class="container">
+        <div class="reveal" style="text-align: center;">
+            <h2>What We Offer Citizens</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: var(--text-dim);">The Department of Transportation is committed to maintaining safety, reliability, and efficiency across all public roads and highways.</p>
         </div>
 
-        <div class="info-grid">
-            <div class="scroll-reveal block">
-                <h2>Patrol Guidelines</h2>
-                <p>Units must be in full uniform and operating a marked DOT vehicle. All road closures must be marked with proper cone placement and high-visibility lighting.</p>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <h3>Roadside Assistance</h3>
+                <p>Stranded on Highway 55? Our units provide fuel delivery, tire changes, and minor mechanical repairs to get you back on the road.</p>
             </div>
 
-            <div class="scroll-reveal block">
-                <h2>Radio Discipline</h2>
-                <p>Keep comms clear of chatter. Use "10-8" when starting your shift at the DOT HQ (Postal 304). Report all debris and major accidents immediately.</p>
+            <div class="service-card reveal">
+                <h3>Heavy Towing</h3>
+                <p>Locked out or involved in an accident? We offer professional towing and recovery services to any local repair shop or impound lot.</p>
+            </div>
+
+            <div class="service-card reveal">
+                <h3>Live Road Updates</h3>
+                <p>Stay informed about active construction in Springfield and the Industrial Park. We manage lane closures to minimize your delay.</p>
             </div>
         </div>
 
-        <div class="scroll-reveal block" style="margin-top: 30px;">
-            <h2>Authorized Equipment</h2>
-            <p>Standard issue includes reflective vests, road flares, and traffic cones. Heavy equipment (Flatbeds) are reserved for Senior Technicians and above.</p>
+        <div class="reveal" style="margin-top: 80px; text-align: center; background: var(--card-bg); padding: 50px; border-radius: 8px;">
+            <h2>Need Assistance?</h2>
+            <p>Our dispatchers are standing by to assist with road hazards or vehicle recovery.</p>
+            <a href="#" class="btn" onclick="alert('In-game: Call DOT via your phone or 911 dispatch.')">REQUEST ASSISTANCE</a>
         </div>
-
     </div>
 
     <footer>
-        NYSRP-DOT PRIVATE SERVER DOCUMENTATION // VER. 2.0.24
+        &copy; 2024 New York State Roleplay • Department of Transportation
     </footer>
 
     <script>
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        // Fixed Scroll Transition (Internal)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+                    entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.15 });
 
-        // Target all reveal elements
-        document.querySelectorAll('.scroll-reveal').forEach((el) => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
