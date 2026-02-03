@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NYSRP DOT | Fixed Portal</title>
+    <style>
+        :root {
+            /* HSL Palette */
+            --h: 200; 
+            --bg: hsl(var(--h), 25%, 7%);
+            --card: hsl(var(--h), 20%, 12%);
+            --accent: hsl(45, 100%, 50%);
+            --text: hsl(0, 0%, 90%);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .section-hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, transparent, var(--bg)),
+                        radial-gradient(circle at center, hsla(var(--h), 50%, 20%, 0.3), transparent);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            margin: 0;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+
+        .hero-sub {
+            color: var(--accent);
+            letter-spacing: 8px;
+            font-weight: bold;
+        }
+
+        /* Scroll Transition Class */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            margin-bottom: 50px;
+        }
+
+        /* This class is toggled by the internal script below */
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .block {
+            background: var(--card);
+            padding: 40px;
+            border-left: 4px solid var(--accent);
+            border-radius: 2px;
+        }
+
+        .block h2 {
+            margin-top: 0;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            border-top: 1px solid #222;
+            font-size: 0.8rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="section-hero">
+        <h1 class="hero-title">NYSRP</h1>
+        <div class="hero-sub">TRANSPORTATION</div>
+        <p style="margin-top: 40px; opacity: 0.5;">[ SCROLL FOR DEPARTMENT INFO ]</p>
+    </section>
+
+    <div class="content-container">
+        
+        <div class="scroll-reveal block">
+            <h2>Department Mission</h2>
+            <p>Our goal is to ensure the safety and fluidity of all Liberty County roadways. From Springfield to the Industrial Park, we maintain the infrastructure that keeps our citizens moving.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="scroll-reveal block">
+                <h2>Patrol Guidelines</h2>
+                <p>Units must be in full uniform and operating a marked DOT vehicle. All road closures must be marked with proper cone placement and high-visibility lighting.</p>
+            </div>
+
+            <div class="scroll-reveal block">
+                <h2>Radio Discipline</h2>
+                <p>Keep comms clear of chatter. Use "10-8" when starting your shift at the DOT HQ (Postal 304). Report all debris and major accidents immediately.</p>
+            </div>
+        </div>
+
+        <div class="scroll-reveal block" style="margin-top: 30px;">
+            <h2>Authorized Equipment</h2>
+            <p>Standard issue includes reflective vests, road flares, and traffic cones. Heavy equipment (Flatbeds) are reserved for Senior Technicians and above.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        NYSRP-DOT PRIVATE SERVER DOCUMENTATION // VER. 2.0.24
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Target all reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
